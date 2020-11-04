@@ -36,7 +36,7 @@ func NewMongoRepository() MongoRepository {
 func Connect() (MongoRepository, error) {
 	repo := MongoRepository{}
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	mongoclient, err := mongo.Connect(ctx, "mongodb://127.0.0.1:27017")
+	mongoclient, err := mongo.Connect(ctx, options.Client().ApplyURI("mongodb://127.0.0.1:27017"))
 	defer cancel()
 	if err != nil {
 		return repo, err
