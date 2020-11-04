@@ -1,3 +1,8 @@
-module main.go
+module github.com/andromedha/golang-testapi
 
 go 1.15
+
+require (
+	github.com/gorilla/mux v1.8.0
+	go.mongodb.org/mongo-driver v1.4.3
+)
