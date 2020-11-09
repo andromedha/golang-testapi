@@ -8,6 +8,8 @@ import (
 	"os"
 
 	"github.com/andromedha/golang-testapi/dataclasses"
+
+	//needed because we open the sqllite db with this driver but never reference/use the driver explicit
 	_ "github.com/mattn/go-sqlite3"
 )
 
