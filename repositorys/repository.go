@@ -7,7 +7,7 @@ type Repository interface {
 	CreateFile(dataclasses.Textfile) (int, error)
 	GetDataBaseList() ([]string, error)
 	GetCollection(string) ([]string, error)
-	SetDatabase(dataclasses.Connection)
+	SetDatabase(dataclasses.Connection) error
 	GetFile(int) (dataclasses.Textfile, error)
 	UpdateFile(dataclasses.Textfile) (dataclasses.Textfile, error)
 	DeleteFile(int) (bool, error)

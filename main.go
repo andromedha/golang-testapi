@@ -13,17 +13,17 @@ import (
 )
 
 func main() {
-	repo := repositorys.NewMongoRepository()
-	defer repositorys.CloseConnection(&repo)
+	repo := repositorys.NewSQLLiteRepository()
+	defer repo.CloseConnection()
 	r := mux.NewRouter()
 	fmt.Printf("Server started on port 10000...\n")
-	r.HandleFunc("/mongo/databases", GetDataBasesHandler(&repo)).Methods("GET")
-	r.HandleFunc("/mongo/collections/{database}", GetCollectionHandler(&repo)).Methods("GET")
-	r.HandleFunc("/mongo/connection", SetDatabaseData(&repo)).Methods("POST")
-	r.HandleFunc("/mongo/create", CreateDocument(&repo)).Methods("POST")
-	r.HandleFunc("/mongo/find/{id}", FindDocument(&repo)).Methods("GET")
-	r.HandleFunc("/mongo/update", UpdateDocument(&repo)).Methods("POST")
-	r.HandleFunc("/mongo/delete/{id}", DeleteDocument(&repo)).Methods("GET")
+	r.HandleFunc("/api/databases", GetDataBasesHandler(&repo)).Methods("GET")
+	r.HandleFunc("/api/collections/{database}", GetCollectionHandler(&repo)).Methods("GET")
+	r.HandleFunc("/api/connection", SetDatabaseData(&repo)).Methods("POST")
+	r.HandleFunc("/api/create", CreateDocument(&repo)).Methods("POST")
+	r.HandleFunc("/api/find/{id}", FindDocument(&repo)).Methods("GET")
+	r.HandleFunc("/api/update", UpdateDocument(&repo)).Methods("POST")
+	r.HandleFunc("/api/delete/{id}", DeleteDocument(&repo)).Methods("GET")
 	http.ListenAndServe(":10000", r)
 }
 

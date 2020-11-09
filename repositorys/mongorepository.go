@@ -94,8 +94,9 @@ func (repo *MongoRepository) GetCollection(database string) ([]string, error) {
 }
 
 //SetDatabase set the connections values for operation on the mongodb
-func (repo *MongoRepository) SetDatabase(databasedata dataclasses.Connection) {
+func (repo *MongoRepository) SetDatabase(databasedata dataclasses.Connection) error {
 	repo.connection = databasedata
+	return nil
 }
 
 //CreateFile create a new document on the database
